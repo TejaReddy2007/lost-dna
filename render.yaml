@@ -1,0 +1,27 @@
+# One-click deploy on Render: New → Blueprint → pick this repo.
+# Free plan note: the disk is temporary, so the fictional demo data is re-created
+# automatically whenever the service restarts or redeploys (handy for demos).
+services:
+  - type: web
+    name: lost-dna
+    runtime: node
+    plan: free
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATA_ENCRYPTION_KEY
+        generateValue: true
+      - key: DEMO_MODE
+        value: "true"
+      - key: DEMO_PASSWORD
+        value: LostDNA@demo1
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: TRUST_PROXY
+        value: "1"
