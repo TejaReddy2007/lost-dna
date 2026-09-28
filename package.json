@@ -15,7 +15,7 @@
     "start": "cross-env NODE_ENV=production tsx server/index.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p server/tsconfig.json --noEmit",
     "test": "tsx --test server/tests/*.test.ts",
-    "build:netlify": "npm run build && node scripts/netlify-redirects.mjs"
+    "build:netlify": "npm run build"
   },
   "engines": {
     "node": ">=20"
